@@ -60,3 +60,24 @@ spec:
   selector:
     app: python-app
   type: NodePort
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-python
+  namespace: test
+spec:
+  ingressClassName: ingress
+  rules:
+  - host: my-python.local
+    http:
+      paths:
+      - backend:
+          service:
+            name: my-python
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
