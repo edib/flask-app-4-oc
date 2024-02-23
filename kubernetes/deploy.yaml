@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
         - name: my-python
-          image: image-registry.openshift-image-registry.svc:5000/kokdemir-dev/python-basic
+          image: flask:latest
           ports:
             - name: http
               containerPort: 8081
