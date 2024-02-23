@@ -59,3 +59,4 @@ spec:
       targetPort: 8081
   selector:
     app: python-app
+  type: NodePort
