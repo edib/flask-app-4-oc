@@ -28,7 +28,8 @@ spec:
     spec:
       containers:
         - name: my-python
-          image: flask:latest
+          image: flask
+          imagePullPolicy: Always
           ports:
             - name: http
               containerPort: 8081
