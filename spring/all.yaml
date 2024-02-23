@@ -1,0 +1,44 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: my-spring
+  namespace: test  
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-app
+  template:
+    metadata:
+      labels:
+        app: spring-app
+    spec:
+      containers:
+        - name: my-spring
+          image: devfile-sample-java-springboot-basic
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          resources:
+            requests:
+              memory: "200Mi"
+              cpu: "100m"
+              
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: my-spring
+  namespace: test
+spec:
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 8081
+  selector:
+    app: spring-app
+  type: NodePort
